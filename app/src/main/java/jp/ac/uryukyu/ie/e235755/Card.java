@@ -42,7 +42,7 @@ public class Card {
     }
 
     //カードの合計値
-    public void point(ArrayList<String> hands){
+    public int point(ArrayList<String> hands){
         ArrayList<Integer> indexList = new ArrayList<>();
         for (String hand : hands){
             int index = cards.indexOf(hand);  //カードのindexを取得
@@ -50,11 +50,12 @@ public class Card {
         }
         //indexListを使って、カードの合計値を求める
         int sumPoint = 0;
+        int cntA = 0; 
         for (int index: indexList){
             int i = index % 13;
             switch (i+1){
               case 1:
-                System.out.println("1or11");     //後でやる
+                cntA += 1;
                 break;
               case 11:
               case 12:
@@ -66,6 +67,33 @@ public class Card {
                 break;
             }
         }
-        System.out.println(sumPoint);
+        //Aが1か11か
+        if (cntA > 0){
+            int[][] list = {{1,11},{2,12},{3,14},{4,15}};
+            if (sumPoint + list[cntA-1][0] > 21){
+                sumPoint += list[cntA-1][0];
+            }else if (sumPoint + list[cntA-1][0] <= 21 && sumPoint +list[cntA][1] > 21){
+                sumPoint += list[cntA-1][0];
+            }else if (sumPoint + list[cntA-1][1] <= 21){
+                sumPoint += list[cntA-1][1];
+            }
+        }
+        return sumPoint;
+        //System.out.println(sumPoint);
+    }
+    //勝敗判定
+    public void judge(int dealerPoint,int playerPoint){
+        if (playerPoint > 21){
+            System.out.println("You lose");
+            //賭け金を失うメソッド
+        }else{
+            if (dealerPoint > 21){
+                System.out.println("You win!");
+            }else if (21-dealerPoint < 21-playerPoint){
+                System.out.println("You lose");
+            }else{
+                System.out.println("You win");
+            }
+        }
     }
 }
