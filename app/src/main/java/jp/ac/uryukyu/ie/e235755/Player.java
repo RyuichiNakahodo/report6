@@ -2,18 +2,29 @@ package jp.ac.uryukyu.ie.e235755;
 import java.util.Scanner;
 
 public class Player {
-    Card card;
-    CommandSelector command;
-    public int bankroll;
-    public int bet;
+    private Card card;
+    private CommandSelector command;
+    private int bankroll;
+    private int bet;
     private String name;
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
-    public Player(int bankroll){
-        this.card = new Card();
-        this.command = new CommandSelector();
+    public Player(Card card,int bankroll){
+        this.card = card;
+        this.command = new CommandSelector(this);
         this.bankroll = bankroll;
     }
+
+    public int getBankroll(){
+        return bankroll;
+    }
+    public String getName(){
+        return name;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+
 
     //名前聞くメソッド
     public void playerName(){
@@ -23,7 +34,14 @@ public class Player {
         }
         System.out.print("> ");
         name = scanner.nextLine();
+        setName(name);
+    }
 
+    //最初の２枚を表示するメソッド
+    public void showHands(){
+        System.out.println("----------------------------------");
+        System.out.println("dealer:"+"["+card.getDealerCards().get(0)+", ?]");
+        System.out.println(getName()+":"+card.getPlayerCards());
     }
 
     //賭けメソッド
@@ -40,9 +58,6 @@ public class Player {
             System.out.println("Bet exceeds your bankroll"); 
             bet();
         }
-        System.out.println("----------------------------------");
-        System.out.println("Good luck!");
-        System.out.println("----------------------------------");
     }
     //敗北メソッド
     public void lose(){
@@ -79,16 +94,10 @@ public class Player {
     }
 
     //カード引くメソッド
-    public void playerDrawCard(Card card){
+    public void playerDrawCard(){
         while (command.hitStandCommand()){
-            card.drawCard(card.playerCards);
-            System.out.println("player:"+card.playerCards);
+            card.drawCard(card.getPlayerCards());
+            System.out.println(getName()+":"+card.getPlayerCards());
         }
-        System.out.println("dealer:"+card.dealerCards);
-        System.out.println(name+":"+card.playerCards);
-        for (int i=0;i<2;i++){
-            System.out.println();
-        }
-        
     }
 }

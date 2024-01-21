@@ -3,30 +3,22 @@ import java.util.ArrayList;
 
 
 public class Card {
-
-    public ArrayList<String> cards = new ArrayList<>();
-    public ArrayList<String> playerCards = new ArrayList<>();
-    public ArrayList<String> dealerCards = new ArrayList<>();
-    public ArrayList<Integer> usedIndex = new ArrayList<>();
-    /* 
-    public ArrayList<String> getCards(){
-        return cards;
-    }
+    private ArrayList<String> cards = new ArrayList<>();
+    private ArrayList<String> playerCards = new ArrayList<>();
+    private ArrayList<String> dealerCards = new ArrayList<>();
+    private ArrayList<Integer> usedIndex = new ArrayList<>();
+    
 
     public ArrayList<String> getPlayerCards(){
         return playerCards;
     }
-    public void setPlayerCards(){
-
-    }
-
     public ArrayList<String> getDealerCards(){
         return dealerCards;
     }
     public ArrayList<Integer> getUsedIndex(){
         return usedIndex;
     }
-    */
+    
     //２枚ずつ配るメソッド
     public void dealCards(){
         String[] suits = {"\u2665","\u2666","\u2663","\u2660"}; //ハート、ダイヤ、クラブ、スペード
@@ -58,8 +50,7 @@ public class Card {
             usedIndex.add(rand);
 
         }
-        System.out.println("dealer:"+"["+dealerCards.get(0)+",?]");
-        System.out.println("player:"+playerCards);
+        
     }
 
     //カードの合計値
@@ -88,7 +79,7 @@ public class Card {
                 break;
             }
         }
-        //Aが1か11か          要テスト
+        //Aが1か11か          
         if (cntA > 0){                       
             int[][] list = {{1,11},{2,12},{3,14},{4,15}};
             if (sumPoint + list[cntA-1][0] > 21){
@@ -113,6 +104,13 @@ public class Card {
             someoneCards.add(cards.get(rand));
             usedIndex.add(rand);
         }
+    }
+
+    //カードを初期化するメソッド
+    public void cleanCards(){
+        playerCards.clear();
+        dealerCards.clear();
+        usedIndex.clear(); 
     }
     
 }

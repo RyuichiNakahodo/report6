@@ -4,26 +4,32 @@ import java.util.Scanner;
 public class CommandSelector {
     private Scanner scanner = new Scanner(System.in);
     private boolean bool;
+    private boolean roop;
+    private Player player;
 
-    
+    public CommandSelector(Player player){
+        this.player = player;
+    }
+
+    public boolean getRoop(){
+        return roop;
+    }
+
     //スタートメソッド
     public void startCommand(){
         System.out.println();
-        System.out.println("---------"+"\u2665"+"\u2666 "+"BLACK JACK"+" \u2663"+"\u2660"+"---------");
-        //"\u2665","\u2666","\u2663","\u2660"
-        System.out.println();
-        System.out.println();
-        System.out.println();
+        System.out.println("---------"+"\u2660"+"\u2665 "+"BLACK JACK"+" \u2663"+"\u2666"+"---------");
+        //"\u2665"ハート,"\u2666"ダイヤ,"\u2663"クローバー,"\u2660"スペード
+        for(int i=0;i<3;i++){
+            System.out.println();
+        }
         System.out.println("0: START");
         System.out.println("1: END");
-        System.out.print(">");
+        System.out.print("> ");
         int num = scanner.nextInt();
         System.out.println("----------------------------------");
         
         if (num == 0){
-
-            //game始めるメソッド
-
         }else if (num == 1){
             System.out.println("Bye!");
             System.out.println("----------------------------------");
@@ -39,13 +45,12 @@ public class CommandSelector {
         System.out.println();
         System.out.println("0: HIT");
         System.out.println("1: STAND");
-        System.out.print(">");
+        System.out.print("> ");
         int num = scanner.nextInt();
         System.out.println("----------------------------------");
 
         if (num == 0){
             bool = true;
-
         }else if (num == 1){
             bool = false;
         }else{
@@ -64,16 +69,16 @@ public class CommandSelector {
     //コンティニューメソッド
     public void continueCommand(){
         System.out.println();
-        System.out.println("0: CONTINUE");
+        System.out.println("0: CONTINUE" + "         "+"Bankroll:"+player.getBankroll()+"$");
         System.out.println("1: END");
-        System.out.print(">");
+        System.out.print("> ");
         int num = scanner.nextInt();
 
         if (num == 0){
             System.out.println("----------------------------------");
             System.out.println("Good luck!");
-            System.out.println("----------------------------------");
-            //ゲーム始めるメソッド(賭けるとこから)
+            roop = true;
+
         }else if (num == 1){
             System.out.println("----------------------------------");
             System.out.println("See you again!");

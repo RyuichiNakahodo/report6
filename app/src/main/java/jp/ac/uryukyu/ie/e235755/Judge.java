@@ -1,22 +1,29 @@
 package jp.ac.uryukyu.ie.e235755;
 
 public class Judge {
-    Card card;
-    Player player;
+    private Card card;
+    private Player player;
+
+    public Judge(Card card,Player player){
+        this.card = card;
+        this.player = player;
+    }
 
     //勝敗判定
-    public void judge(Card card,Player player){
-        int dealerPoint = card.point(card.dealerCards);
-        int playerPoint = card.point(card.playerCards);
-        System.out.println("dealerPoint:"+dealerPoint);   //テスト
-        System.out.println("playerPoint:"+playerPoint);   //テスト
+    public void judge(){
+        int dealerPoint = card.point(card.getDealerCards());
+        int playerPoint = card.point(card.getPlayerCards());
+        System.out.println("dealerPoint:"+dealerPoint);
+        System.out.println(player.getName()+"Point:"+playerPoint);
+
+        
         if (playerPoint > 21){
             player.lose();
         }else if (playerPoint == 21){
             if (dealerPoint == 21){
                 player.push();
             }else{
-                if (card.playerCards.size() == 2){
+                if (card.getPlayerCards().size() == 2){
                     player.winBlackJack();
                 }else{
                     player.win();
@@ -33,6 +40,8 @@ public class Judge {
             }else{
                 player.win();
             }      
-        } 
+        }
+        dealerPoint = 0;
+        playerPoint = 0;
     }
 }
