@@ -4,11 +4,29 @@ import java.util.ArrayList;
 
 public class Card {
 
-    ArrayList<String> cards = new ArrayList<>();
+    public ArrayList<String> cards = new ArrayList<>();
     public ArrayList<String> playerCards = new ArrayList<>();
     public ArrayList<String> dealerCards = new ArrayList<>();
-    ArrayList<Integer> usedIndex = new ArrayList<>();
+    public ArrayList<Integer> usedIndex = new ArrayList<>();
+    /* 
+    public ArrayList<String> getCards(){
+        return cards;
+    }
 
+    public ArrayList<String> getPlayerCards(){
+        return playerCards;
+    }
+    public void setPlayerCards(){
+
+    }
+
+    public ArrayList<String> getDealerCards(){
+        return dealerCards;
+    }
+    public ArrayList<Integer> getUsedIndex(){
+        return usedIndex;
+    }
+    */
     //２枚ずつ配るメソッド
     public void dealCards(){
         String[] suits = {"\u2665","\u2666","\u2663","\u2660"}; //ハート、ダイヤ、クラブ、スペード
@@ -27,6 +45,7 @@ public class Card {
                 continue;
             }
             dealerCards.add(cards.get(rand));
+            usedIndex.add(rand);
         }
         //playerに2枚配る
         for (int i = 0; i < 2; i++){
@@ -36,8 +55,10 @@ public class Card {
                 continue;
             }
             playerCards.add(cards.get(rand));
+            usedIndex.add(rand);
+
         }
-        System.out.println("dealer:"+dealerCards);
+        System.out.println("dealer:"+"["+dealerCards.get(0)+",?]");
         System.out.println("player:"+playerCards);
     }
 
@@ -67,12 +88,12 @@ public class Card {
                 break;
             }
         }
-        //Aが1か11か
-        if (cntA > 0){
+        //Aが1か11か          要テスト
+        if (cntA > 0){                       
             int[][] list = {{1,11},{2,12},{3,14},{4,15}};
             if (sumPoint + list[cntA-1][0] > 21){
                 sumPoint += list[cntA-1][0];
-            }else if (sumPoint + list[cntA-1][0] <= 21 && sumPoint +list[cntA][1] > 21){
+            }else if (sumPoint + list[cntA-1][0] <= 21 && sumPoint +list[cntA-1][1] > 21){
                 sumPoint += list[cntA-1][0];
             }else if (sumPoint + list[cntA-1][1] <= 21){
                 sumPoint += list[cntA-1][1];
@@ -81,19 +102,17 @@ public class Card {
         return sumPoint;
         //System.out.println(sumPoint);
     }
-    //勝敗判定
-    public void judge(int dealerPoint,int playerPoint){
-        if (playerPoint > 21){
-            System.out.println("You lose");
-            //賭け金を失うメソッド
-        }else{
-            if (dealerPoint > 21){
-                System.out.println("You win!");
-            }else if (21-dealerPoint < 21-playerPoint){
-                System.out.println("You lose");
-            }else{
-                System.out.println("You win");
-            }
+
+    public void drawCard(ArrayList<String> someoneCards){
+        for (int i = 0; i < 1; i++){
+            int rand = new java.util.Random().nextInt(52);
+            if (usedIndex.contains(rand)){                      
+                i--;                                                      
+                continue;                                                 
+            }                                                             
+            someoneCards.add(cards.get(rand));
+            usedIndex.add(rand);
         }
     }
+    
 }
