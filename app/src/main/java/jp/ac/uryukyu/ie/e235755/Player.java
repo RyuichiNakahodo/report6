@@ -47,7 +47,7 @@ public class Player {
     //賭けメソッド
     public void bet(){
         System.out.println("----------------------------------");
-        System.out.println("Place your bet."+"     "+"Bankroll:"+bankroll+"$");
+        System.out.println("Place your bet."+"     "+"Bankroll:"+"$"+bankroll);
         for (int i=0;i<4;i++){
             System.out.println();
         }
@@ -62,7 +62,7 @@ public class Player {
     //敗北メソッド
     public void lose(){
         System.out.println("----------------------------------");
-        System.out.println("YOU LOSE"+"                    "+"-"+bet+"$");
+        System.out.println("YOU LOSE"+"                    "+"-"+"$"+bet);
         System.out.println();
         bankroll -= bet;
         if (bankroll == 0){
@@ -73,23 +73,23 @@ public class Player {
     //勝利メソッド
     public void win(){
         System.out.println("----------------------------------");
-        System.out.println("YOU WIN!"+"                    "+"+"+bet*2+"$");
+        System.out.println("YOU WIN!"+"                    "+"+"+"$"+bet);
         System.out.println();
-        bankroll += (bet*2);
+        bankroll += (bet);
         bet = 0;
     }
     //ブラックジャック勝利メソッド                    
     public void winBlackJack(){
         System.out.println("----------------------------------");
-        System.out.println("BLACK JACK!!"+"                "+"+"+bet*3+"$");
+        System.out.println("BLACK JACK!!"+"                "+"+"+"$"+bet*2);
         System.out.println();
-        bankroll += (bet*3);
+        bankroll += (bet*2);
         bet = 0;
     }
     //引き分けメソッド
     public void push(){
         System.out.println("----------------------------------");
-        System.out.println("PUSH"+"                        "+"\u00B1"+"0$");
+        System.out.println("PUSH"+"                          "+"\u00B1"+"$0");
         bet = 0;
     }
 
@@ -98,6 +98,7 @@ public class Player {
         while (command.hitStandCommand()){
             card.drawCard(card.getPlayerCards());
             System.out.println(getName()+":"+card.getPlayerCards());
+            System.out.println();
         }
     }
 }

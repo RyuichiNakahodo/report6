@@ -61,6 +61,9 @@ public class CommandSelector {
     }
     //賭け金0$で終了するメソッド
     public void noBankrollCommand(){
+        for (int i=0;i<4;i++){
+            System.out.println();
+        }
         System.out.println("----------------------------------");
         System.out.println("GAME OVER");
         System.out.println("----------------------------------");
@@ -69,7 +72,7 @@ public class CommandSelector {
     //コンティニューメソッド
     public void continueCommand(){
         System.out.println();
-        System.out.println("0: CONTINUE" + "         "+"Bankroll:"+player.getBankroll()+"$");
+        System.out.println("0: CONTINUE" + "         "+"Bankroll:"+"$"+player.getBankroll());
         System.out.println("1: END");
         System.out.print("> ");
         int num = scanner.nextInt();
