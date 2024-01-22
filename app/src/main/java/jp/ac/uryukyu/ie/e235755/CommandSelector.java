@@ -1,6 +1,9 @@
 package jp.ac.uryukyu.ie.e235755;
 import java.util.Scanner;
 
+/**
+ * コマンド選択の機能をまとめたクラス
+ */
 public class CommandSelector {
     private Scanner scanner = new Scanner(System.in);
     private boolean bool;
@@ -10,12 +13,17 @@ public class CommandSelector {
     public CommandSelector(Player player){
         this.player = player;
     }
-
+    /**
+     * ゲームをループするかどうかを取得するメソッド
+     * @return true or false
+     */
     public boolean getRoop(){
         return roop;
     }
 
-    //スタートメソッド
+    /**
+     * ゲームを始めるかどうかを選択させるメソッド
+     */
     public void startCommand(){
         System.out.println();
         System.out.println("---------"+"\u2660"+"\u2665 "+"BLACK JACK"+" \u2663"+"\u2666"+"---------");
@@ -40,7 +48,10 @@ public class CommandSelector {
         }
     }
 
-    //ヒットスタンドメソッド
+    /**
+     * ヒットかスタンドかを選択させるメソッド
+     * @return ヒットならtrue,スタンドならfalse
+     */
     public boolean hitStandCommand(){
         System.out.println();
         System.out.println("0: HIT");
@@ -59,7 +70,10 @@ public class CommandSelector {
         }
         return bool;
     }
-    //賭け金0$で終了するメソッド
+
+    /**
+     * 賭け金0$になると終了するメソッド
+     */
     public void noBankrollCommand(){
         for (int i=0;i<4;i++){
             System.out.println();
@@ -69,7 +83,9 @@ public class CommandSelector {
         System.out.println("----------------------------------");
         System.exit(0);
     }
-    //コンティニューメソッド
+    /**
+     * コンティニューするかどうかを選択させるメソッド
+     */
     public void continueCommand(){
         System.out.println();
         System.out.println("0: CONTINUE" + "         "+"Bankroll:"+"$"+player.getBankroll());

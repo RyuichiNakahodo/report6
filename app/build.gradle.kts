@@ -10,6 +10,10 @@ plugins {
     application
 }
 
+tasks.getByName("run", JavaExec::class) {
+    standardInput = System.`in`
+}
+
 java {                                      
     sourceCompatibility = JavaVersion.VERSION_17
 }

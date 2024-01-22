@@ -1,5 +1,7 @@
 package jp.ac.uryukyu.ie.e235755;
-
+/**
+ * 勝敗判定を実装したクラス
+ */
 public class Judge {
     private Card card;
     private Player player;
@@ -9,7 +11,9 @@ public class Judge {
         this.player = player;
     }
 
-    //勝敗判定
+    /**
+     * 勝敗判定するメソッド
+     */
     public void judge(){
         int dealerPoint = card.point(card.getDealerCards());
         int playerPoint = card.point(card.getPlayerCards());

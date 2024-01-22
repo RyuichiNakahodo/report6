@@ -1,5 +1,7 @@
 package jp.ac.uryukyu.ie.e235755;
-
+/**
+ * ディーラーに関連する機能をまとめたクラス
+ */
 public class Dealer {
     private Card card;
     private Player player;
@@ -8,7 +10,9 @@ public class Dealer {
         this.card = card;
         this.player = player;
     }
-    //カード引くメソッド
+    /**
+     * ディーラー(cp)が自動でカードを引くメソッド
+     */
     public void dealerDrawCard(){
         while (card.point(card.getDealerCards()) < 17){
             card.drawCard(card.getDealerCards());
