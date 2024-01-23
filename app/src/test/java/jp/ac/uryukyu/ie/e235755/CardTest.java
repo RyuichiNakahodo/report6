@@ -5,10 +5,16 @@ package jp.ac.uryukyu.ie.e235755;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
 
 class CardTest {
     @Test void appHasAGreeting() {
         Card classUnderTest = new Card();
-        //assertNotNull(classUnderTest.dealCards(), "app should have a greeting");
+        classUnderTest.dealCards();
+        ArrayList<String> hands = new ArrayList<>();
+        hands.add("♠K");
+        hands.add("♥A");
+        int point = classUnderTest.point(hands);
+        assertEquals(21,point);
     }
 }
