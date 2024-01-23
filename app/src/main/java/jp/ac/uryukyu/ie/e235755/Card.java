@@ -50,7 +50,7 @@ public class Card {
         //dealerに2枚配る
         for (int i = 0; i < 2; i++){
             int rand = new java.util.Random().nextInt(52);
-            if (usedIndex.contains(rand)){                           //要テスト
+            if (usedIndex.contains(rand)){                           
                 i--;
                 continue;
             }
